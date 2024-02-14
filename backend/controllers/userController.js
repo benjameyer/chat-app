@@ -5,13 +5,13 @@ export const userController = {
         try {
             const search = new RegExp(`.*${req.query.searchUsers}.*`);
 
-            const usersFound = await User.find({ username: { $regex: search } }).select("-password");
+            const usersFound = await User.find({ username: { $ne: req.user.username, $regex: search } }).select("-password");
 
-            res.status(200).json(usersFound);
+            return res.status(200).json(usersFound);
 
         } catch (error) {
             console.log("Error in getUsers ", error.message);
-            res.status(500).json({ error: "Internal server error" });
+            return res.status(500).json({ error: "Internal server error" });
         }
     }
 }

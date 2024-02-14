@@ -32,10 +32,10 @@ export const messageController = {
             // await newMessage.save();
             await Promise.all([ conversation.save(), newMessage.save() ]);
 
-            res.status(201).json(newMessage);
+            return res.status(201).json(newMessage);
         } catch (error) {
             console.log("Error in sendMessage controller ", error.message);
-            res.status(500).json({ error: "Internal server error" })
+            return res.status(500).json({ error: "Internal server error" })
         }
     },
     getMessages: async (req, res) => {
@@ -47,11 +47,11 @@ export const messageController = {
                 participants: { $all: [senderId, userToChatId] }
             }).populate("messages");
 
-            res.status(200).json(conversation.messages);
+            return res.status(200).json(conversation?.messages || []);
 
         } catch (error) {
             console.log("Error in getMessages controller ", error.message);
-            res.status(500).json({ error: "Internal server error" })
+            return res.status(500).json({ error: "Internal server error" })
         }
     }
 }
