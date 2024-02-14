@@ -11,7 +11,7 @@ function Users({ setShowingUsers, searchUsers }) {
   const { loading, createConversation } = useStartConversation();
 
   const startConversation = (user) => {
-    createConversation(user);
+    createConversation(user, true);
   }
 
   useEffect(() => {

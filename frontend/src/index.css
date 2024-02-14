@@ -24,3 +24,19 @@ body {
     translate: 0;
   }
 }
+
+.noti-custom {
+  animation: noti 2s ease-out 1;
+}
+
+@keyframes noti {
+  0% {
+    background-color: #11151C;
+  }
+  50% {
+    background-color: #55a630;
+  }
+  100% {
+    background-color: #11151C;
+  }
+}

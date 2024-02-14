@@ -11,8 +11,8 @@ function Conversations() {
         loading ?
         <span className="loading loading-spinner self-center"></span>
         :
-        conversations.map((conversation) => {
-          return <Conversation key={conversation._id} conversation={conversation} />
+        conversations.map((conversation, index) => {
+          return <Conversation first={index == 0? true : false} key={conversation._id} conversation={conversation} />
         })
       }
     </div>

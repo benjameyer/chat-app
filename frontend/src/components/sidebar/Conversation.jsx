@@ -2,16 +2,18 @@ import { useConversationContext } from "../../context/ConversationContext"
 import { useSocketContext } from "../../context/SocketContext";
 
 
-function Conversation({ conversation }) {
-  const {selectedConversation, setSelectedConversation} = useConversationContext();
+function Conversation({ conversation, first }) {
+  const { newMessage, selectedConversation, setSelectedConversation} = useConversationContext();
 
   const isSelected = selectedConversation?._id == conversation._id;
 
   const { onlineUsers } = useSocketContext();
   const isOnline = onlineUsers.includes(conversation.otherParticipant._id);
 
+  const bgColor = first && newMessage? "noti-custom" : "";
+
   return (
-    <div className={`flex gap-3 items-center ${isSelected? "bg-info" : ""} active:bg-primary hover:bg-info p-2 py-2 cursor-pointer`}
+    <div className={`flex gap-3 items-center ${isSelected? "bg-info" : ""} ${bgColor} active:bg-primary hover:bg-info p-2 py-2 cursor-pointer`}
       onClick={() => setSelectedConversation(conversation)}>
 
       <div className={`avatar ${isOnline? "online" : ""}`}>
