@@ -21,10 +21,13 @@ function useStartConversation() {
       if (select) {
         setSelectedConversation(newConversation);
       }
-      if (conversations.findIndex(conversation => conversation._id == newConversation._id) == -1) {
-        setConversations([newConversation, ...conversations]);
-      }
 
+      // if (conversations.findIndex(conversation => conversation._id == newConversation._id) == -1) {
+      //   setConversations([newConversation, ...conversations]);
+      // }
+      
+      const filteredConversations = await conversations.filter(conversation => conversation._id != newConversation._id);
+      setConversations([newConversation, ...filteredConversations]);
 
     } catch (error) {
       toast.error(error.message);
