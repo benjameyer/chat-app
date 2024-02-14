@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useSendMessage from "../../hooks/useSendMessage";
+import toast from "react-hot-toast"
 
 function MessageInput() {
   const [message, setMessage] = useState("");
@@ -8,6 +9,11 @@ function MessageInput() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!message) return;
+    if (message.length >= 256) {
+      setMessage("");
+      toast.error("Message cannot be longer than 256 characters");
+      return;
+    }
     await sendMessage(message);
     setMessage("");
   }

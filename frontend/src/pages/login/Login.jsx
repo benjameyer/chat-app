@@ -21,10 +21,10 @@ function Login() {
         </h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-y-4">
 
-          <input type="text" name="username" id="username" className="input w-full max-w-xs bg-accent" placeholder="Username"
+          <input type="text" name="username" id="username" className="input w-full bg-accent" placeholder="Username"
           onChange={(e)=>{ setUsername(e.target.value) }} />
 
-          <input type="password" name="password" id="password" className="input w-full max-w-xs bg-accent" placeholder="Password"
+          <input type="password" name="password" id="password" className="input w-full bg-accent" placeholder="Password"
           onChange={(e)=>{ setPassword(e.target.value) }} />
 
           <Link to='/signup' className="link link-info">
