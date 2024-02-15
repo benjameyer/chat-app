@@ -8,7 +8,7 @@ export const conversationController = {
 
             const conversations = await Conversation.find({
                 participants: { $in: [senderId] }
-            }).select('-messages').lean();
+            }).sort({ updatedAt: -1 }).select('-messages').lean();
 
             for (let i = 0; i < conversations.length; i++) {
                 const otherParticipantId = conversations[i].participants.find(id => String(id) != senderId);

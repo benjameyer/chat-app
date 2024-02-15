@@ -4,7 +4,7 @@ import { useConversationContext } from "../context/ConversationContext";
 
 function useStartConversation() {
   const [loading, setLoading] = useState(false);
-  const { conversations, setConversations, setSelectedConversation } = useConversationContext();
+  const { setNewMessage, conversations, setConversations, setSelectedConversation } = useConversationContext();
 
   const createConversation = async (user, select) => {
     setLoading(true);
@@ -28,6 +28,10 @@ function useStartConversation() {
       
       const filteredConversations = await conversations.filter(conversation => conversation._id != newConversation._id);
       setConversations([newConversation, ...filteredConversations]);
+      setNewMessage(true);
+      setTimeout(() => {
+        setNewMessage(false);
+      }, 2000);
 
     } catch (error) {
       toast.error(error.message);

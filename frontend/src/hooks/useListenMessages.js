@@ -17,12 +17,6 @@ function useListenMessages() {
       if (selectedConversation?.otherParticipant._id == fromId) {
         setMessages([...messages, newMessage]);
       }
-      else {
-        setNewMessage(true);
-        setTimeout(() => {
-          setNewMessage(false);
-        }, 2000);
-      }
       createConversation(senderData, false);
     });
 
